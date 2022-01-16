@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <!-- Moralis SDK code -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+  </head>
+  <body>
+    <h1>Creatorverse</h1>
+
+    <button id="btn-login">Login</button>
+    <button id="btn-logout">Logout</button>
+    <button id="btn-createContract">Create Contract</button>
+
+    <script>
+      // connect to Moralis server
+
+      const serverUrl = "https://nqtcnz4qkeij.usemoralis.com:2053/server";
+      const appId = "TWbwVsRVxw7N92uQucUfvJzV5mee6UYxDDyhFlMO";
+      Moralis.start({ serverUrl, appId });
+
+    // add from here down
+        async function login() {
+        let user = Moralis.User.current();
+        if (!user) {
+          user = await Moralis.authenticate();
+        }
+        console.log("logged in user:", user);
+      }
+
+      async function logOut() {
+        await Moralis.User.logOut();
+        console.log("logged out");
+      }
+
+      async function createContract() {
+        var name = "nfthack-gold-test";
+        var symbol = "GT";
+        var address = "0xd35116ec863e37cfa36aa860955A2D42fFFa7F03";
+
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "chain": "polygon",
+          "name": "nfthack-gold-test",
+          "symbol": "GT",
+          "owner_address": "0xd35116ec863e37cfa36aa860955A2D42fFFa7F03"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("https://api.nftport.xyz/v0/contracts", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+        // const request = `https://api.opensea.io/api/v1/assets?owner=${address}`;
+        // const response = await fetch(request);
+
+        // const myJson = await response.json();
+        // App.assets = myJson.assets; // make a k/v mapping?
+        // console.log(App.assets)
+
+        // // console.log(myJson.assets)
+        // if (myJson.assets.length == 0) {
+        //     // case when no NFTs yet
+        //     // link to some places to buy NFTs
+        // }
+
+        // App.processAssets(App.assets);
+        // console.log("logged in user:", user);
+      }
+
+    processAssets: (assets) => {
+        var imageTable = document.getElementById('image-table');
+
+        // Otherwise, create image
+        for (let i = 0; i < assets.length; i++) {
+            let asset = assets[i];
+            
+            let img = document.createElement("img");
+            img.id = asset.id;
+            img.className = "nft-image";
+            img.src = asset.image_thumbnail_url;
+
+            let a = document.createElement("a");
+            a.href=`javascript:showStats(${asset.id})`
+            a.append(img)
+
+            imageTable.append(a) // error
+        }
+    }
+
+      
+      document.getElementById("btn-login").onclick = login;
+      document.getElementById("btn-logout").onclick = logOut;
+      document.getElementById("btn-createContract").onclick = createContract;
+
+    </script>
+  </body>
+</html>
