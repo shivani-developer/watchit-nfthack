@@ -5,7 +5,7 @@ async function deployNFTContract() {
   
   
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+    myHeaders.append("Authorization", "a1b2c3");
     myHeaders.append("Content-Type", "application/json");
   
     var raw = JSON.stringify({
@@ -45,7 +45,7 @@ async function deployNFTContract() {
   
   async function mintNFT() {
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+      myHeaders.append("Authorization", "a1b2c3");
       myHeaders.append("Content-Type", "application/json");
       
       var raw = JSON.stringify({
@@ -70,7 +70,7 @@ async function deployNFTContract() {
   
     async function uploadMetadata() {
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+      myHeaders.append("Authorization", "a1b2c3");
       myHeaders.append("Content-Type", "application/json");
       
       var raw = JSON.stringify({
@@ -94,7 +94,7 @@ async function deployNFTContract() {
   
     async function retrieveDeployedContract() {
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+      myHeaders.append("Authorization", "a1b2c3");
       
       var requestOptions = {
         method: 'GET',
@@ -110,7 +110,7 @@ async function deployNFTContract() {
   
     async function retrieveMintedNFTStatus() {
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+      myHeaders.append("Authorization", "a1b2c3");
       
       var requestOptions = {
         method: 'GET',
@@ -126,7 +126,7 @@ async function deployNFTContract() {
   
     async function retrieveMintedNFTFromAddress() {
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "f693e428-75e6-429d-a3ec-85a534b9db10");
+      myHeaders.append("Authorization", "a1b2c3");
       
       var requestOptions = {
         method: 'GET',
